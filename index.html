@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Broker Wipe</title>
+    <meta name="description" content="Automatic GDPR and CCPA personal data deletion request generator.">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Matrix Background Canvas -->
+    <canvas id="matrixCanvas"></canvas>
+
+    <main class="app-container">
+        <header>
+            <h1>Data Wipe Generator</h1>
+            <p class="subtitle">
+                Fill in the details you want to permanently erase from data brokers' databases.
+            </p>
+        </header>
+
+        <!-- Form Section -->
+        <section id="formSection" class="active-section">
+            <div class="input-group">
+                <label for="fullName">Full Name (including previous names)</label>
+                <input type="text" id="fullName" placeholder="e.g., John Doe" autocomplete="off">
+            </div>
+            <div class="input-group">
+                <label for="email">Email Address to Remove</label>
+                <input type="email" id="email" placeholder="john.doe@example.com" autocomplete="off">
+            </div>
+            <div class="input-group">
+                <label for="phone">Phone Number (with country code)</label>
+                <input type="text" id="phone" placeholder="+1 234 567 8900" autocomplete="off">
+            </div>
+            <div class="input-group">
+                <label for="address">Residential Address</label>
+                <input type="text" id="address" placeholder="Street, City, ZIP/Postal Code, Country" autocomplete="off">
+            </div>
+            
+            <button id="btnGenerate" class="primary-btn">Generate Request</button>
+        </section>
+
+        <!-- Result Section -->
+        <section id="resultSection" class="hidden-section">
+            <div class="result-block">
+                <label class="accent-label">1. Copy Email Subject:</label>
+                <div class="copy-row">
+                    <input type="text" id="emailSubject" value="URGENT: GDPR / CCPA Data Deletion and Opt-Out Request" readonly>
+                    <button class="icon-btn" onclick="copyValue('emailSubject', 'Subject copied to clipboard!')" title="Copy Subject">📋</button>
+                </div>
+            </div>
+
+            <div class="result-block">
+                <label class="accent-label">2. Generated Request Text:</label>
+                <textarea id="generatedText" readonly></textarea>
+                <button class="secondary-btn" onclick="copyValue('generatedText', 'Request text copied to clipboard!')">
+                    Copy Text
+                </button>
+            </div>
+
+            <div class="result-block">
+                <label class="accent-label">3. Broker Emails (Paste into BCC field):</label>
+                <!-- Zde je obrovský seznam updatovaných e-mailů brokerů -->
+                <div class="emails-list" id="brokerEmails">
+                    askprivacy@acxiom.com, optout@experian.com, privacy@zoominfo.com, privacy@oracle.com, privacy@epsilon.com, privacy@nielsen.com, privacy@equifax.com, privacy@transunion.com, dpo@bisnode.cz, privacy@lexisnexis.com, privacy@corelogic.com, info@databrothers.cz, privacy@dnb.com, privacy@truveta.com, optout@liveramp.com, privacy@clearstar.com, privacy@infogroup.com, dpo@eos-ksi.cz, privacy@pipl.com, privacy@mylife.com, privacyrequest@whitepages.com, privacy@beenverified.com, privacy@peopleconnect.us, customer-service@radaris.com
+                </div>
+                <button class="secondary-btn" onclick="copyEmails()">Copy Emails</button>
+            </div>
+            
+            <button id="btnReset" class="outline-btn">Start Over</button>
+        </section>
+    </main>
+
+    <!-- Zvlášť oddělený JavaScript -->
+    <script src="js/matrix.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
